@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 01</title>
+    <style>
+        body {
+    margin: 0 auto;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+h1 {
+    text-align: center;
+}
+
+section {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+section > div {
+    margin: 30px;
+    box-sizing: content-box;
+}
+
+#vol-back {
+    border: 1px solid black;
+    height: 15px;
+    width: 173px;
+    padding: 2px;
+    border-radius: 2px;
+}
+
+span {
+    color: dimgray;
+}
+div > div, input, button {
+    margin: 5px;
+}
+
+canvas {
+    border: black 1px solid;
+    background-color: darksalmon;
+}
+
+#clear {
+    width: 290px;
+    background-color: cadetblue;
+}
+    </style>
+</head>
+<body>
+    <h1>Clculate ball volume</h1>
+    <section>
+       
+        <div>
+            <h2>Input the ball radius</h2>
+            <label for="radius">Radius</label><br>
+            <input type="text" id="radius" placeholder="Enter the radius"><br>
+            <label for="volume">Volume</label>
+            <div id="vol-back"><span id="volume">Ball volume</span></div><br>
+            <button id="calc">Calculate</button>
+        </div>
+        <div>
+            <canvas id="canvas" width="300" height="300"></canvas><br>
+            <button id="clear">Clear</button>
+        </div>
+    </section>
+
+    <script>
+        let radius = document.querySelector('#radius');
+let volPrint = document.querySelector('#volume');
+
+let canvas = document.querySelector('canvas');
+let ctx = canvas.getContext('2d');
+
+function start() {
+for (i = 0; i < canvas.width / 2; i++) {
+    ctx.beginPath()
+    ctx.arc(150, 150, i, 0, 2 * Math.PI)
+    ctx.stroke()
+}
+}
+setTimeout(start, 100)
+setTimeout(() => {ctx.clearRect(0, 0, 300, 300)}, 2000)
+
+let calc = document.querySelector('#calc').addEventListener('click', () => {
+    
+    
+    if (isNaN(radius.value)) {
+        alert('please enter a valid number')
+    } else {
+    let volume = (Math.pow(radius.value, 3) * (Math.PI * 4)) / 3;
+    volPrint.innerHTML = volume
+    console.log(volume)
+    
+    if (radius.value <= canvas.width / 2) {
+    ctx.beginPath()
+    ctx.arc(150, 150, radius.value, 0, 2 * Math.PI)
+    ctx.stroke()
+    setTimeout (() => {radius.value = ''
+    radius.focus()}, 1000)
+    } else {
+        alert('Can not draw because there not enough space')
+    }
+}
+})
+
+let clearBtn = document.querySelector('#clear').addEventListener('click', () => {
+    ctx.clearRect(0, 0, 300, 300)
+    volume.innerHTML = ''
+})
+    </script>
+</body>
+</html>

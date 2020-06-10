@@ -1,0 +1,46 @@
+body {
+    margin: 0 auto;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+h1 {
+    text-align: center;
+}
+
+section {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+section > div {
+    margin: 30px;
+    box-sizing: content-box;
+}
+
+#vol-back {
+    border: 1px solid black;
+    height: 15px;
+    width: 173px;
+    padding: 2px;
+    border-radius: 2px;
+}
+
+span {
+    color: dimgray;
+}
+div > div, input, button {
+    margin: 5px;
+}
+
+canvas {
+    border: black 1px solid;
+    background-color: darksalmon;
+}
+
+#clear {
+    width: 290px;
+    background-color: cadetblue;
+}
